@@ -67,10 +67,33 @@ def cmp1(o1, o2):
 stocks = sorted(stocks, cmp=cmp1)
 
 import xueqiu_model as xm
+
 xm.write_to_excel(stocks, "all_" + xs.now_date + ".xls")
 xm.write_to_excel_top(stocks, xs.now_date + ".xls", 50)
 xm.write_to_excel_top(stocks, xs.now_date + ".xls", 30)
 xm.write_to_excel_top(stocks, xs.now_date + ".xls", 15)
-import source
-print source.get_selected_stocks()
 
+import source
+
+selected_list = source.get_selected_stocks()
+
+
+def has_code(selected_list, code):
+    for l in selected_list:
+        if code.find(l) != -1:
+            return True
+            pass
+    return False
+    pass
+
+
+selected_stocks = []
+for s in stocks:
+    if has_code(selected_list, s['code']):
+        selected_stocks.append(s)
+        pass
+    pass
+
+xm.write_to_excel(selected_stocks, 'selected_' + xs.now_date + ".xls")
+
+print "main success"

@@ -132,6 +132,8 @@ roes.append(get_roe_map_from_dir('roe_2014', '20141231'))
 roes.append(get_roe_map_from_dir('roe_2013', '20131231'))
 roes.append(get_roe_map_from_dir('roe_2012', '20121231'))
 
+print 'origin data got success'
+
 
 def get_basic_info_from_dir(dir_name):
     stocks = []
