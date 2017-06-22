@@ -88,7 +88,7 @@ def write_to_excel(list, file_name):
         c += 1
         sh.write(index, c, "%.2f" % (s["r6"]))
         c += 1
-        sh.write(index, c, "%.2f" % (s['roe_2017']))
+        sh.write(index, c, "%.2f" % (s['roe_2017'] * 4))
         c += 1
         sh.write(index, c, "%.2f" % (s['roe_2016']))
         c += 1
