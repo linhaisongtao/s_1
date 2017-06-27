@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 import sys
+import datetime
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -11,23 +12,28 @@ def show_history_char(history_list, current_s):
     histories = []
     price2s = []
     price5s = []
+    pures = []
 
+    date = history_list[len(history_list) - 1].date
     for i, l in enumerate(history_list):
         x.append(i)
         histories.append(l.current)
         price2s.append(current_s.price2)
         price5s.append(current_s.price5)
+        pures.append(current_s.pure)
         pass
     plt.plot(x, histories)
     plt.plot(x, price2s)
     plt.plot(x, price5s)
-    plt.legend(['histories', 'price2s', 'price5s'])
+    plt.plot(x, pures)
+    plt.legend(['histories', 'price2s', 'price5s', 'pure'], 'lower left')
 
     maxX = len(history_list)
-    maxY = max([max(histories), max(price2s), max(price5s)]) * 1.05
+    maxY = max([max(histories), max(price2s), max(price5s), max(pures)]) * 1.05
     plt.axis([0, maxX, 0, maxY])
 
-    plt.title(u'%s[%s]' % (current_s.name, current_s.code))
+    plt.title(u'%s[%s] %s' % (current_s.name, current_s.code, date))
+    print 'show history chart!'
     plt.show()
     pass
 
@@ -47,6 +53,9 @@ class S_UI(object):
     def on_selected(self, event):
         lb = event.widget
         index = lb.curselection()[0]
+        if (index < 0 or index >= len(self.s_list)):
+            return
+            pass
         s = self.s_list[index]
         print s
 
@@ -62,7 +71,7 @@ class S_UI(object):
             pass
         listb.bind("<Double-Button-1>", self.on_selected)
         listb.pack()
-
+        root.title(datetime.datetime.now().strftime("%Y-%m-%d"))
         root.mainloop()
         pass
 
