@@ -29,6 +29,7 @@ class BasicS(object):
 
 
 class S(BasicS):
+    date = ""
     current = 0
     pbCurrent = 0
     price5 = 0
@@ -65,7 +66,9 @@ class S(BasicS):
             super(S, self).__str__())
         pass
 
+
 import xlrd
+
 
 def read_from_xls():
     wb = xlrd.open_workbook("s.xlsx")
@@ -133,4 +136,18 @@ def compute_with_lastest_price(list):
     for i, l in enumerate(list):
         l.set_current(prices[i])
         pass
+    pass
+
+
+def get_history(code):
+    history = [];
+    df = ts.get_hist_data(code, start="2016-07-01")
+    for row in df.iterrows():
+        s = S()
+        s.current = row[1]["close"]
+        s.date = row[0]
+        history.append(s)
+        pass
+    history.reverse()
+    return history
     pass

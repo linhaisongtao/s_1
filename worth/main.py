@@ -3,7 +3,9 @@ import pandas as pd
 import datetime
 import os
 
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 def get_attr_list(list, attr):
     attrs = []
     for l in list:
@@ -37,3 +39,7 @@ if not os.path.exists("s"):
     pass
 now_str = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
 df.to_excel("s/" + now_str + ".xls")
+
+
+import chart
+chart.S_UI(list).show()
