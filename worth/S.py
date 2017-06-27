@@ -132,6 +132,7 @@ def compute_with_lastest_price(list):
     for l in list:
         codes.append(l.code)
         pass
+    print 'request code', codes
     prices = request_price(codes)
     for i, l in enumerate(list):
         l.set_current(prices[i])
@@ -141,7 +142,7 @@ def compute_with_lastest_price(list):
 
 def get_history(code):
     history = [];
-    df = ts.get_hist_data(code, start="2016-07-01")
+    df = ts.get_hist_data(code, start="2015-04-01")
     for row in df.iterrows():
         s = S()
         s.current = row[1]["close"]

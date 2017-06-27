@@ -2,12 +2,15 @@ import matplotlib.pyplot as plt
 
 import sys
 import datetime
+import threading
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-def show_history_char(history_list, current_s):
+def show_history_chart(history_list, current_s):
+    print "show_history_char", len(history_list)
+    print "show_history_char", current_s
     x = []
     histories = []
     price2s = []
@@ -60,7 +63,7 @@ class S_UI(object):
         print s
 
         histories = S.get_history(s.code)
-        show_history_char(histories, s)
+        show_history_chart(histories, s)
         pass
 
     def show(self):
