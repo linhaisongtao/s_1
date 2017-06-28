@@ -59,10 +59,11 @@ def request_pbs(code):
     pbs.name = json_object['d']['Result']['StockName']
     pb_list = json_object['d']['Result']['PBValues']['data']
     dates = json_object['d']['Result']['PBValues']['categories']
-    for i, d in enumerate(dates):
+    start = max(0, len(dates) - 500)
+    for i in range(start, len(dates)):
         pb = PB()
         pb.pb = pb_list[i]
-        pb.date = d
+        pb.date = dates[i]
         pbs.pb_list.append(pb)
         pass
     return pbs

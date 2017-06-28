@@ -34,7 +34,7 @@ class ChartManager(object):
             maxXs.append(max(d.x))
             maxYs.append(max(d.y))
             pass
-        plt.axis([0, max(maxXs), 0, max(maxYs)])
+        plt.axis([0, max(maxXs) + 1, 0, max(maxYs) * 1.05])
         plt.legend(names)
         plt.title(self.title)
         plt.show()
@@ -121,7 +121,14 @@ class S_UI(object):
             chart_data2.y.append(s.pb2)
             pass
 
-        ChartManager("%s(%s)_%s"%(s.name, s.code, s.date),[chart_data, chart_data1, chart_data2]).show()
+        chart_data3 = ChartData()
+        chart_data3.name = "pure"
+        for i, p in enumerate(chart_data.x):
+            chart_data3.x.append(i)
+            chart_data3.y.append(s.pure)
+            pass
+
+        ChartManager("%s(%s)_%s"%(s.name, s.code, s.date),[chart_data, chart_data1, chart_data2, chart_data3]).show()
         pass
 
     def show(self):
