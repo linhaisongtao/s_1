@@ -122,10 +122,10 @@ class S_UI(object):
             pass
 
         chart_data3 = ChartData()
-        chart_data3.name = "pure"
+        chart_data3.name = "1"
         for i, p in enumerate(chart_data.x):
             chart_data3.x.append(i)
-            chart_data3.y.append(s.pure)
+            chart_data3.y.append(1)
             pass
 
         ChartManager("%s(%s)_%s"%(s.name, s.code, s.date),[chart_data, chart_data1, chart_data2, chart_data3]).show()

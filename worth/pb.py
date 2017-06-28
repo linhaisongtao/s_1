@@ -59,7 +59,7 @@ def request_pbs(code):
     pbs.name = json_object['d']['Result']['StockName']
     pb_list = json_object['d']['Result']['PBValues']['data']
     dates = json_object['d']['Result']['PBValues']['categories']
-    start = max(0, len(dates) - 500)
+    start = max(0, len(dates) - 600)
     for i in range(start, len(dates)):
         pb = PB()
         pb.pb = pb_list[i]
