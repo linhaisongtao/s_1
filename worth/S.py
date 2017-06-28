@@ -142,7 +142,7 @@ def compute_with_lastest_price(list):
 
 def get_history(code):
     history = [];
-    df = ts.get_hist_data(code, start="2015-04-01")
+    df = ts.get_hist_data(code, start="2015-01-01")
     for row in df.iterrows():
         s = S()
         s.current = row[1]["close"]
